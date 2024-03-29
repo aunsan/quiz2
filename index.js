@@ -39,17 +39,17 @@ app.post('/', async (req, res) => {
         studentID: 300367477
       });
 
-      var student = await student.save();
+      // var student = await student.save();
 
-      if(student) {
-        res.send(`<h1>Document  Added</h1>`)
-      } else {
-        <h1>Error Adding Document</h1>
-      }
+      // if(student) {
+      //   res.send(`<h1>Document  Added</h1>`)
+      // } else {
+      //   res.send(`<h1>Document  Added</h1>`)
+      // }
 
-      // student.save()
-      //   .then(() =>  res.send(`<h1>Document  Added</h1>`))
-      //   .catch(() => res.send(`<h1>Error Adding Document</h1>`));
+      student.save()
+        .then(() =>  res.send(`<h1>Document  Added</h1>`))
+        .catch(() => res.send(`<h1>Error Adding Document</h1>`));
   })
   .catch(err => {
     console.log("ERROR Connecting to MongoDB Database" + err);
