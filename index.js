@@ -30,7 +30,7 @@ app.post('/', async (req, res) => {
 
   // connect to the database and log the connection
   mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
+  .then(async () => {
     console.log("Connected to Mongodb Database");
 
       // add the data to the database
@@ -38,9 +38,18 @@ app.post('/', async (req, res) => {
         name: "Aung San Oo",
         studentID: 300367477
       });
-      student.save()
-        .then(() =>  res.send(`<h1>Document  Added</h1>`))
-        .catch(() => res.send(`<h1>Error Adding Document</h1>`));
+
+      var student = await student.save();
+
+      if(student) {
+        res.send(`<h1>Document  Added</h1>`)
+      } else {
+        <h1>Error Adding Document</h1>
+      }
+
+      // student.save()
+      //   .then(() =>  res.send(`<h1>Document  Added</h1>`))
+      //   .catch(() => res.send(`<h1>Error Adding Document</h1>`));
   })
   .catch(err => {
     console.log("ERROR Connecting to MongoDB Database" + err);
